@@ -1,9 +1,12 @@
 const express = require('express');
+const checkLogin = require('../middlewares/checkLogin');
 const Todo = require('../schemas/todoSchema');
 const router = express.Router();
 
 // GET ALL THE TODO'S
-router.get("/", async (req, res) => {
+router.get("/", checkLogin, async (req, res) => {
+    console.log(req.username);
+    console.log(req.userId);
     try {
         // normal find with all field data which exist in DB
         // const todo = await Todo.find({ status: "active" });
